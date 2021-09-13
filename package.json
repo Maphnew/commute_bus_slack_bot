@@ -1,0 +1,19 @@
+{
+  "name": "bus_alert_bot",
+  "version": "1.0.0",
+  "description": "",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon ./app.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1",
+    "slack-node": "^0.1.8"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.12"
+  }
+}
