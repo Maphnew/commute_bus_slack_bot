@@ -1,4 +1,5 @@
 const express = require('express')
+const schedule = require('node-schedule')
 const app = express()
 const send = require('./slack/index')
 const PORT = 3000
@@ -11,7 +12,7 @@ app.get('/', (req, res) => {
     res.send(text)
 })
 
-app.post('/bus', (req, res) => {
+app.post('/', (req, res) => {
     console.log(req.body)
     let payload = req.body
     res.sendStatus(200)
@@ -21,8 +22,19 @@ app.post('/bus', (req, res) => {
             send('Success!')
         }
     }
+
+    if(payload.event.type === "message"){
+        console.log('Message')
+    }
 })
 
 app.listen(PORT, () => {
     console.log(`http://localhost:${PORT}`)
+})
+
+const rule = new schedule.RecurrenceRule();
+
+const job = schedule.scheduleJob({hour: 8, minute: 0, second: 5, dayOfWeek: [1,2,3,4,5]}, () => {
+    console.log('schedule test')
+    send('Schedule Test, It is 8:00 AM')
 })
