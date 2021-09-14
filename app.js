@@ -14,7 +14,7 @@ app.use(express.json())
 const message = {
     token: SLACK_ACCESS_TOKEN,
     channel: 'bus',
-    text: `TEST, ${moment().format('YYYY MM DD hh:mm:ss')}`
+    text: ''
 }
 
 app.get('/', (req, res) => {
@@ -53,7 +53,7 @@ app.listen(PORT, () => {
 //     send('Schedule Test, It is 8:00 AM')
 // })
 
-const testJob = schedule.scheduleJob('30 * * * * *', () => {
-    console.log('schedule test')
+const testJob = schedule.scheduleJob({hour: 20, minute: 35, second: 5, dayOfWeek: [1,2,3,4,5]}, () => {
+    message.text = `TEST, 08:00:05 AM, ${moment().format('YYYY MM DD hh:mm:ss')}`
     axios.post('https://slack.com/api/chat.postMessage', qs.stringify(message))
 })
