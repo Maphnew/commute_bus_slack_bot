@@ -53,7 +53,7 @@ app.listen(PORT, () => {
 //     send('Schedule Test, It is 8:00 AM')
 // })
 
-const testJob = schedule.scheduleJob({hour: 20, minute: 40, second: 5, dayOfWeek: [1,2,3,4,5]}, () => {
+const testJob = schedule.scheduleJob({hour: 20, minute: 42, second: 35, dayOfWeek: [1,2,3,4,5]}, () => {
     message.text = `TEST, 08:00:05 AM, ${moment().format('YYYY MM DD hh:mm:ss')}`
     axios.post('https://slack.com/api/chat.postMessage', qs.stringify(message))
 })
