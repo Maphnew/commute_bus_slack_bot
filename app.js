@@ -25,11 +25,11 @@ app.listen(PORT, () => {
 })
 
 
-const testJob = schedule.scheduleJob('10 * * * * *', () => {
-    // send(`Test, ${moment().format('YYYY MM DD hh:mm:ss')}`)
+// const testJob = schedule.scheduleJob('10 * * * * *', () => {
+//     send(`Test, ${moment().format('YYYY MM DD hh:mm:ss')}`)
     
-})
+// })
 
-const morningJob = schedule.scheduleJob({hour: 8, minute: 0, second: 5, dayOfWeek: [1,2,3,4,5]}, () => {
+const morningJob = schedule.scheduleJob({hour: 8, minute: 0, second: 0, dayOfWeek: [1,2,3,4,5]}, () => {
     send(`Good morning!, ${moment().format('YYYY MM DD hh:mm:ss')}`)
 })
