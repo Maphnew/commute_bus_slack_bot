@@ -1,10 +1,21 @@
+const { default: axios } = require('axios')
 const express = require('express')
 const schedule = require('node-schedule')
 const app = express()
+const qs = require('qs');
+const moment = require('moment')
 const send = require('./slack/index')
 const PORT = process.env.PORT || 3000
+const SLACK_ACCESS_TOKEN = process.env.SLACK_ACCESS_TOKEN
 
 app.use(express.json())
+
+
+const message = {
+    token: SLACK_ACCESS_TOKEN,
+    channel: 'bus',
+    text: `TEST, ${moment().format('YYYY MM DD hh:mm:ss')}`
+}
 
 app.get('/', (req, res) => {
     const text = req.query.text
@@ -26,15 +37,23 @@ app.post('/', (req, res) => {
     if(payload.event.type === "message"){
         console.log('Message')
     }
+
+    axios.post('https://slack.com/api/chat.postMessage', qs.stringify(message))
 })
+
+
 
 app.listen(PORT, () => {
-    console.log(`http://localhost:${PORT}`)
+    console.log(`http://localhost:${PORT}`, )
 })
 
-const rule = new schedule.RecurrenceRule();
 
-const job = schedule.scheduleJob({hour: 8, minute: 0, second: 5, dayOfWeek: [1,2,3,4,5]}, () => {
+// const job = schedule.scheduleJob({hour: 8, minute: 0, second: 5, dayOfWeek: [1,2,3,4,5]}, () => {
+//     console.log('schedule test')
+//     send('Schedule Test, It is 8:00 AM')
+// })
+
+const testJob = schedule.scheduleJob('30 * * * * *', () => {
     console.log('schedule test')
-    send('Schedule Test, It is 8:00 AM')
+    axios.post('https://slack.com/api/chat.postMessage', qs.stringify(message))
 })
