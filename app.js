@@ -2,7 +2,7 @@ const express = require('express')
 const schedule = require('node-schedule')
 const app = express()
 const send = require('./slack/index')
-const PORT = 3000
+const PORT = process.env.PORT || 3000
 
 app.use(express.json())
 
