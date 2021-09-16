@@ -78,3 +78,8 @@
     </msgBody>
 </response>
 ```
+
+# Slack
+
+## Event Subscriptions
+- 사용자의 메시지를 subscription할 수 있는 api
