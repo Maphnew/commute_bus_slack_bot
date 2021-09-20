@@ -29,7 +29,7 @@ app.post('/slack/message', async(req, res) => {
             await send(`추천 메뉴: ${recommends()}`)
         }
     }
-    res.sendStatus(200)
+    res.send(req.body.challenge)
 })
 
 const recommends = () => {
