@@ -16,7 +16,7 @@ app.post('/', (req, res) => {
     send(`${req.body.message}, ${moment().format('YYYY MM DD hh:mm:ss')}`)
 })
 
-app.post('/slack/message', (req, res) => {
+app.post('/slack/message', async(req, res) => {
     const bodyType = req.body.type
     const eventType = req.body.event.type
     const eventText = req.body.event.text
