@@ -20,8 +20,19 @@ app.post('/', (req, res) => {
 })
 
 app.post('/slack/message', (req, res) => {
-    res.send(req.body.challenge)
-    send(`${req.body.message}`)
+    const bodyType = req.body.type
+    const eventType = req.body.event.type
+    const eventText = req.body.event.text
+    if(bodyType === 'event_callback' && eventType === "message") {
+        if(eventText === 'Hello') {
+            await send(`World!`)
+        }
+
+        if(eventText.includes('점심') || eventText.includes('밥')){
+            await send(`추천 메뉴: ${recommends()}`)
+        }
+    }
+    res.sendStatus(200)
 })
 
 app.listen(PORT, () => {
