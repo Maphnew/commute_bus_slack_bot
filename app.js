@@ -35,6 +35,10 @@ app.post('/slack/message', (req, res) => {
     res.sendStatus(200)
 })
 
+const recommends = () => {
+    return '1. 돈까스, 2. 텐동, 3. 라멘'
+}
+
 app.listen(PORT, () => {
     console.log(`http://localhost:${PORT}`, )
 })
