@@ -1,6 +1,5 @@
 const express = require('express')
 const app = express()
-const moment = require('moment')
 const send = require('./slack/index')
 const location = require('./api/location')
 const stations = require('./api/stations.json')
@@ -15,8 +14,7 @@ app.get('/', async(req, res) => {
 
 app.post('/', (req, res) => {
     res.sendStatus(200)
-    location()
-    // send(`${req.body.message}, ${moment().format('YYYY MM DD hh:mm:ss')}`)
+    await send(req.body.message)
 })
 
 app.post('/slack/message', async(req, res) => {
