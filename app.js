@@ -12,9 +12,20 @@ app.get('/', async(req, res) => {
     res.send(text)
 })
 
-app.post('/', (req, res) => {
+app.post('/', async(req, res) => {
     res.sendStatus(200)
-    await send(req.body.message)
+    const bodyType = req.body.type
+    const eventType = req.body.event.type
+    const eventText = req.body.event.text
+    if(bodyType === 'event_callback' && eventType === "message") {
+        if(eventText.includes('노선')) {
+            await send(`노선정보: ${stations.response.msgBody.busRouteStationList}`)
+        }else if(eventText.includes('버스') || eventText.includes('출근')){
+            await send(`예상 도착 시간`)
+        }else{
+            await send(`입력 키워드: 노선, 버스 또는 출근`)
+        }
+    }
 })
 
 app.post('/slack/message', async(req, res) => {
