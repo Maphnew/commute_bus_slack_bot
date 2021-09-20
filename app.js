@@ -2,6 +2,7 @@ const express = require('express')
 const app = express()
 const moment = require('moment')
 const send = require('./slack/index')
+const location = require('./api/location')
 const PORT = process.env.PORT || 3000
 
 app.use(express.json())
@@ -13,7 +14,8 @@ app.get('/', async(req, res) => {
 
 app.post('/', (req, res) => {
     res.sendStatus(200)
-    send(`${req.body.message}, ${moment().format('YYYY MM DD hh:mm:ss')}`)
+    location()
+    // send(`${req.body.message}, ${moment().format('YYYY MM DD hh:mm:ss')}`)
 })
 
 app.post('/slack/message', async(req, res) => {
@@ -25,7 +27,7 @@ app.post('/slack/message', async(req, res) => {
             await send(`World!`)
         }
 
-        if(eventText.includes('점심') || eventText.includes('밥')){
+        if(eventText.includes('버스') || eventText.includes('출근')){
             await send(`추천 메뉴: ${recommends()}`)
         }
     }
