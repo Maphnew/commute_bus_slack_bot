@@ -3,7 +3,7 @@ const app = express()
 const moment = require('moment')
 const send = require('./slack/index')
 const location = require('./api/location')
-const stations = require('./stations.json')
+const stations = require('./api/stations.json')
 const PORT = process.env.PORT || 3000
 
 app.use(express.json())
