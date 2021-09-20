@@ -11,7 +11,6 @@ app.use(express.json())
 app.get('/', async(req, res) => {
     const text = req.query.text
     await location()
-    // send(text)
     res.send(text)
 })
 
@@ -20,16 +19,11 @@ app.post('/', (req, res) => {
     send(`${req.body.message}, ${moment().format('YYYY MM DD hh:mm:ss')}`)
 })
 
-app.listen(PORT, () => {
-    console.log(`http://localhost:${PORT}`, )
+app.post('/slack/message', (req, res) => {
+    res.send(req.body.challenge)
+    send(`${req.body.message}`)
 })
 
-
-// const testJob = schedule.scheduleJob('10 * * * * *', () => {
-//     send(`Test, ${moment().format('YYYY MM DD hh:mm:ss')}`)
-    
-// })
-
-const morningJob = schedule.scheduleJob({hour: 8, minute: 0, second: 0, dayOfWeek: [1,2,3,4,5]}, () => {
-    send(`Good morning!, ${moment().format('YYYY MM DD hh:mm:ss')}`)
+app.listen(PORT, () => {
+    console.log(`http://localhost:${PORT}`, )
 })
