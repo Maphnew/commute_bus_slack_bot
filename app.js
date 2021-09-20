@@ -43,8 +43,6 @@ app.post('/slack/message', async(req, res) => {
             await send(`Station List: ${stationList}`)
         }else if(eventText === '버스' || eventText === '출근'){
             await send(`예상 도착 시간`)
-        }else{
-            await send(`입력 키워드: 노선, 버스 또는 출근`)
         }
     }
     res.sendStatus(200)
