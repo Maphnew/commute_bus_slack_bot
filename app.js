@@ -1,5 +1,4 @@
 const express = require('express')
-const schedule = require('node-schedule')
 const app = express()
 const moment = require('moment')
 const send = require('./slack/index')
