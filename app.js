@@ -32,9 +32,12 @@ app.post('/slack/message', async(req, res) => {
     const bodyType = req.body.type
     const eventType = req.body.event.type
     const eventText = req.body.event.text
+    const stationList = stations.response.msgBody.busRouteStationList.map(station => {
+        return `Station: ${station.stationName}, Station seq: ${stationSeq}`; 
+    })
     if(bodyType === 'event_callback' && eventType === "message") {
         if(eventText.includes('노선')) {
-            await send(`노선정보: ${stations.response.msgBody.busRouteStationList}`)
+            await send(`노선정보: ${stationList}`)
         }else if(eventText.includes('버스') || eventText.includes('출근')){
             await send(`예상 도착 시간`)
         }else{
