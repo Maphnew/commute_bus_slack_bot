@@ -3,6 +3,7 @@ const app = express()
 const moment = require('moment')
 const send = require('./slack/index')
 const location = require('./api/location')
+const stations = require('./stations.json')
 const PORT = process.env.PORT || 3000
 
 app.use(express.json())
@@ -23,20 +24,17 @@ app.post('/slack/message', async(req, res) => {
     const eventType = req.body.event.type
     const eventText = req.body.event.text
     if(bodyType === 'event_callback' && eventType === "message") {
-        if(eventText === 'Hello') {
-            await send(`World!`)
-        }
-
-        if(eventText.includes('버스') || eventText.includes('출근')){
-            await send(`추천 메뉴: ${recommends()}`)
+        if(eventText.includes('노선')) {
+            await send(`노선정보: ${stations.response.msgBody.busRouteStationList}`)
+        }else if(eventText.includes('버스') || eventText.includes('출근')){
+            await send(`예상 도착 시간`)
+        }else{
+            await send(`입력 키워드: 노선, 버스 또는 출근`)
         }
     }
     res.sendStatus(200)
 })
 
-const recommends = () => {
-    return '1. 돈까스, 2. 텐동, 3. 라멘'
-}
 
 app.listen(PORT, () => {
     console.log(`http://localhost:${PORT}`, )
