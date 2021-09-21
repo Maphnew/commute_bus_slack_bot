@@ -15,11 +15,12 @@ const location = async() => {
         }
     }).then(response => {
         const data = convert.xml2json(response.data, {compact: true, spaces: 4})
-        const busRouteStationList = JSON.parse(data).response.msgBody.busLocationList.stationSeq._text
-        console.log('busRouteStationList:', busRouteStationList)
-        const currentLocation = stations.response.msgBody.busRouteStationList[busRouteStationList-1]
-        console.log('currentLocation:', currentLocation) 
-        return `${currentLocation.stationSeq}. ${currentLocation.stationName}`
+        console.log(data)
+        const stationSeq = JSON.parse(data).response.msgBody.busLocationList.stationSeq._text
+        // console.log('stationSeq:', stationSeq)
+        const currentLocation = stations.response.msgBody.busRouteStationList[stationSeq-1]
+        // console.log('currentLocation:', currentLocation) 
+        return `${currentLocation.stationSeq}. ${currentLocation.stationName} - ${stationSeq < 60 ? '잠실광역환승센터 방면(출근)' : '오리역 방면(퇴근)'}`
     }).catch(error => {
         console.log('error:', error)
     })
