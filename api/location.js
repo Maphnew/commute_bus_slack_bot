@@ -20,7 +20,8 @@ const location = async() => {
         // console.log('stationSeq:', stationSeq)
         const currentLocation = stations.response.msgBody.busRouteStationList[stationSeq-1]
         // console.log('currentLocation:', currentLocation) 
-        return `${currentLocation.stationSeq}. ${currentLocation.stationName} - ${stationSeq < 60 ? '잠실광역환승센터 방면(출근)' : '오리역 방면(퇴근)'}`
+        let result = `${currentLocation.stationSeq}. ${currentLocation.stationName} - ${stationSeq < 60 ? '잠실광역환승센터 방면(출근)' : '오리역 방면(퇴근)'}`
+        return result + (stationSeq < 13 ? `주공7단지 까지 ${13 - stationSeq}개 역 남음` : '')
     }).catch(error => {
         console.log('error:', error)
     })
