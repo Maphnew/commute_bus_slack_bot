@@ -6,7 +6,7 @@ const API_URL = process.env.API_URL
 const convert = require('xml-js');
 
 const location = async() => {
-    console.log(API_URL) // http://apis.data.go.kr/6410000/buslocationservice/getBusLocationList
+    // console.log(API_URL) // http://apis.data.go.kr/6410000/buslocationservice/getBusLocationList
     // console.log(stations.response.msgBody.busRouteStationList[0]) // json file
     return axios.get(API_URL, {
         params: {
@@ -15,8 +15,12 @@ const location = async() => {
         }
     }).then(response => {
         const data = convert.xml2json(response.data, {compact: true, spaces: 4})
-        console.log(data)
-        const stationSeq = JSON.parse(data).response.msgBody.busLocationList.stationSeq._text
+        const msg = JSON.parse(data).response
+        if(msg.msgHeader.resultCode._text !== "0") {
+            console.log(msg)
+            return '운행 정보 없음(오리역에 있음)'
+        }
+        const stationSeq = msg.msgBody.busLocationList.stationSeq._text
         // console.log('stationSeq:', stationSeq)
         const currentLocation = stations.response.msgBody.busRouteStationList[stationSeq-1]
         // console.log('currentLocation:', currentLocation) 

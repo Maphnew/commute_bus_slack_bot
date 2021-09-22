@@ -10,7 +10,7 @@ const send = async(message) => {
         channel: 'bus',
         text: message
     })).then((res) => {
-        console.log(res.data)
+        // console.log(res.data)
     }).catch((error) => {
         console.log(error)
     })
