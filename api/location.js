@@ -13,7 +13,7 @@ const location = async() => {
     return axios.get(API_URL, {
         params: {
             serviceKey: decodeURIComponent(escape(PUBLIC_API_SERVICE_KEY)),
-            routeId: ROUTE_ID_220
+            routeId: ROUTE_ID_101
         }
     }).then(response => {
         const data = convert.xml2json(response.data, {compact: true, spaces: 4})
