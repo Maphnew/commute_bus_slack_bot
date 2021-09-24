@@ -1,19 +1,17 @@
 require('dotenv').config()
 const axios = require('axios')
 const stations = require('./stations.json')
+const routeIds = require('./routeid.json')
 const PUBLIC_API_SERVICE_KEY = process.env.PUBLIC_API_SERVICE_KEY_DECODE
-const API_URL = process.env.API_URL
 const convert = require('xml-js');
-const ROUTE_ID_101 = 228000179
-const ROUTE_ID_220 = 204000022
 
 const location = async() => {
     // console.log(API_URL) // http://apis.data.go.kr/6410000/buslocationservice/getBusLocationList
     // console.log(stations.response.msgBody.busRouteStationList[0]) // json file
-    return axios.get(API_URL, {
+    return axios.get('http://apis.data.go.kr/6410000/buslocationservice/getBusLocationList', {
         params: {
             serviceKey: decodeURIComponent(escape(PUBLIC_API_SERVICE_KEY)),
-            routeId: ROUTE_ID_101
+            routeId: routeIds.ROUTE_ID_101
         }
     }).then(response => {
         const data = convert.xml2json(response.data, {compact: true, spaces: 4})
