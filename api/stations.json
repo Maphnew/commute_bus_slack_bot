@@ -32,7 +32,8 @@
             "x": "127.1091833",
             "y": "37.3446333",
             "stationSeq": "2",
-            "turnYn": "N"
+            "turnYn": "N",
+            "minLeft": "15"
           },
           {
             "centerYn": "N",
@@ -44,7 +45,8 @@
             "x": "127.10915",
             "y": "37.3476",
             "stationSeq": "3",
-            "turnYn": "N"
+            "turnYn": "N",
+            "minLeft": "13"
           },
           {
             "centerYn": "N",
@@ -56,7 +58,8 @@
             "x": "127.1106167",
             "y": "37.3498833",
             "stationSeq": "4",
-            "turnYn": "N"
+            "turnYn": "N",
+            "minLeft": "11"
           },
           {
             "centerYn": "N",
@@ -68,7 +71,8 @@
             "x": "127.116",
             "y": "37.3517167",
             "stationSeq": "5",
-            "turnYn": "N"
+            "turnYn": "N",
+            "minLeft": "9"
           },
           {
             "centerYn": "N",
@@ -80,7 +84,8 @@
             "x": "127.1182167",
             "y": "37.3542667",
             "stationSeq": "6",
-            "turnYn": "N"
+            "turnYn": "N",
+            "minLeft": "8"
           },
           {
             "centerYn": "N",
@@ -92,7 +97,8 @@
             "x": "127.11925",
             "y": "37.3580167",
             "stationSeq": "7",
-            "turnYn": "N"
+            "turnYn": "N",
+            "minLeft": "7"
           },
           {
             "centerYn": "N",
@@ -104,7 +110,8 @@
             "x": "127.12055",
             "y": "37.3591",
             "stationSeq": "8",
-            "turnYn": "N"
+            "turnYn": "N",
+            "minLeft": "5"
           },
           {
             "centerYn": "N",
@@ -116,7 +123,8 @@
             "x": "127.1230667",
             "y": "37.35985",
             "stationSeq": "9",
-            "turnYn": "N"
+            "turnYn": "N",
+            "minLeft": "3"
           },
           {
             "centerYn": "N",
