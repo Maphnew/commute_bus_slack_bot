@@ -25,12 +25,12 @@ const location = async() => {
             return msg.msgBody.busLocationList.map(loc => {
                 const stationSeq = loc.stationSeq._text
                 const currentLocation = stations.response.msgBody.busRouteStationList[stationSeq-1]
-                return `\n${currentLocation.stationSeq}. ${currentLocation.stationName} - ${getDirection(stationSeq)} ${currentLocation.minLeft ? currentLocation.minLeft + '분': ''}`
+                return `\n${currentLocation.stationSeq}. ${currentLocation.stationName} - ${getDirection(stationSeq)}, ${currentLocation.minLeft ? currentLocation.minLeft + '분 뒤 도착': ''}`
             })
         } else {
             const stationSeq = msg.msgBody.busLocationList.stationSeq._text
             const currentLocation = stations.response.msgBody.busRouteStationList[stationSeq-1]
-            return `${currentLocation.stationSeq}. ${currentLocation.stationName} - ${getDirection(stationSeq)} ${currentLocation.minLeft ? currentLocation.minLeft + '분': ''}`
+            return `${currentLocation.stationSeq}. ${currentLocation.stationName} - ${getDirection(stationSeq)}, ${currentLocation.minLeft ? currentLocation.minLeft + '분 뒤 도착': ''}`
         }
         
         
